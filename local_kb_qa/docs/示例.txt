@@ -1,0 +1,29 @@
+LangChain 本地知识库问答小工具说明
+
+本工具基于 LangChain 框架构建，使用 Ollama 作为本地大语言模型后端，Chroma 作为本地向量数据库，Gradio 提供 Web 交互界面。
+
+技术架构说明：
+1. 文档加载：使用 DirectoryLoader 扫描 docs 目录下的 txt 和 md 文件。
+2. 文本切分：使用 RecursiveCharacterTextSplitter 将长文档切分成较小的 chunk，chunk_size 设置为 500，overlap 设置为 50。
+3. 向量化：使用 Ollama 的 nomic-embed-text 模型生成文本向量。
+4. 存储：向量写入 Chroma 持久化目录 chroma_db，集合名为 kb。
+5. 检索：每次提问时，从 Chroma 中检索 Top-4 个最相似的文档片段。
+6. 问答：使用 qwen2.5:7b 作为生成模型，结合检索到的文档片段生成回答。
+
+常见问题：
+问：如何添加新文档？
+答：将 txt 或 md 文件复制到 docs 目录下，重新运行 python ingest.py 即可重建索引。
+
+问：模型回答不准确怎么办？
+答：可以尝试调整 chunk_size、chunk_overlap 参数，或更换更大参数的 LLM 模型，例如 qwen2.5:14b。
+
+问：支持哪些文档格式？
+答：当前版本仅支持 txt 和 markdown 两种纯文本格式。
+
+问：默认监听端口是多少？
+答：Gradio 界面默认监听 127.0.0.1:7860。
+
+注意事项：
+- 运行前需要先安装 Ollama 并拉取 qwen2.5:7b 和 nomic-embed-text 两个模型。
+- 删除文档后需要重新运行 ingest.py 才能让向量库与文件保持一致。
+- 所有数据均保存在本地，不会上传到任何云端服务。
