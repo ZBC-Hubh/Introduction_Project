@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>物品详情 - 校园失物招领系统</title>
+  <link rel="stylesheet" href="/样式/全局样式.css" />
+  <link rel="stylesheet" href="/样式/页面布局.css" />
+  <link rel="stylesheet" href="/样式/详情与发布.css" />
+</head>
+<body>
+  <div id="topbar-slot"></div>
+  <main class="page">
+    <section class="detail-layout">
+      <div class="detail-gallery">
+        <div class="detail-image" id="detail-image">加载中...</div>
+      </div>
+      <div class="detail-body">
+        <h1 class="detail-title" id="detail-title">标题</h1>
+        <div class="detail-tag-row" id="detail-tags"></div>
+        <div class="detail-desc" id="detail-desc"></div>
+        <div class="detail-info-row"><span class="k">📍 地点</span><span class="v" id="row-loc"></span></div>
+        <div class="detail-info-row"><span class="k">🕒 发布</span><span class="v" id="row-time"></span></div>
+        <div class="detail-info-row"><span class="k">👁 浏览</span><span class="v" id="row-views"></span></div>
+        <div class="detail-info-row"><span class="k">👤 发布者</span><span class="v" id="row-publisher"></span></div>
+        <div class="detail-info-row"><span class="k">📞 联系方式</span><span class="v" id="row-contact"></span></div>
+        <div class="detail-actions" id="detail-actions"></div>
+      </div>
+    </section>
+
+    <section class="message-block">
+      <div class="section-head">
+        <div><div class="section-title">留言区</div><div class="section-sub">请友善沟通，文明交流</div></div>
+      </div>
+      <div class="message-input">
+        <textarea id="msg-input" placeholder="说点什么..."></textarea>
+        <button class="btn btn-primary" id="send-msg">发布留言</button>
+      </div>
+      <div class="msg-list" id="msg-list"></div>
+    </section>
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="/脚本/接口封装.js"></script>
+  <script src="/脚本/公共工具.js"></script>
+  <script src="/脚本/详情.js"></script>
+</body>
+</html>

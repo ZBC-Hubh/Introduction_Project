@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>登录注册 - 校园失物招领系统</title>
+  <link rel="stylesheet" href="/样式/全局样式.css" />
+  <link rel="stylesheet" href="/样式/登录注册.css" />
+</head>
+<body>
+  <div class="auth-shell">
+    <!-- 左侧氛围区 -->
+    <aside class="auth-aside">
+      <div class="brand">
+        <div class="brand-mark">寻</div>
+        <div class="brand-name">校园失物招领</div>
+      </div>
+
+      <div class="hero-text">
+        <h1 class="hero-title">让每一件失物<br><em>都能找到回家的路</em></h1>
+        <p class="hero-sub">
+          面向师生的失物招领平台。发布丢/拾信息，分类检索，留言沟通，
+          让善意与归还在此交汇。
+        </p>
+      </div>
+
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">5</div>
+          <div class="stat-label">物品分类</div>
+        </div>
+        <div>
+          <div class="stat-num">2</div>
+          <div class="stat-label">用户身份</div>
+        </div>
+        <div>
+          <div class="stat-num">24h</div>
+          <div class="stat-label">实时匹配</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 右侧表单区 -->
+    <main class="auth-main">
+      <div class="auth-card">
+        <div class="card-tabs" data-active="login">
+          <button class="tab-btn active" data-tab="login" type="button">登 录</button>
+          <button class="tab-btn" data-tab="register" type="button">注 册</button>
+          <span class="tab-slider"></span>
+        </div>
+
+        <h2 class="card-title" id="form-title">欢迎回来</h2>
+        <p class="card-desc" id="form-desc">登录后即可发布、认领与留言</p>
+
+        <!-- 身份切换 -->
+        <div class="role-switch">
+          <div class="role-card active" data-role="student" tabindex="0">
+            <div class="role-name">学生端</div>
+            <div class="role-desc">发布·认领·留言</div>
+          </div>
+          <div class="role-card" data-role="teacher" tabindex="0">
+            <div class="role-name">老师端</div>
+            <div class="role-desc">含后台管理权限</div>
+          </div>
+        </div>
+
+        <form id="auth-form" autocomplete="off">
+          <div class="field">
+            <label class="field-label" id="label-code" for="field-code">学号</label>
+            <input class="field-input" id="field-code" name="code" type="text" placeholder="请输入学号" />
+          </div>
+
+          <div class="field" id="wrap-name" style="display:none">
+            <label class="field-label" for="field-name">姓名</label>
+            <input class="field-input" id="field-name" name="name" type="text" placeholder="请输入真实姓名" />
+          </div>
+
+          <div class="field" id="wrap-extra" style="display:none">
+            <label class="field-label" id="label-extra" for="field-extra">班级</label>
+            <input class="field-input" id="field-extra" name="extra" type="text" placeholder="如：软件 2201" />
+          </div>
+
+          <div class="field" id="wrap-phone" style="display:none">
+            <label class="field-label" for="field-phone">联系电话（选填）</label>
+            <input class="field-input" id="field-phone" name="phone" type="tel" placeholder="如：13800000000" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="field-password">密码</label>
+            <input class="field-input" id="field-password" name="password" type="password" placeholder="请输入密码（至少 6 位）" />
+          </div>
+
+          <p class="error-text" id="error-text"></p>
+
+          <div class="form-actions" id="form-actions">
+            <button class="btn btn-primary" type="submit">登 录</button>
+          </div>
+        </form>
+
+        <p class="bottom-link" id="bottom-link">
+          还没有账号？<a href="#" data-switch="register">立即注册</a>
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <!-- 全局提示 -->
+  <div class="toast" id="toast"></div>
+
+  <script src="/脚本/接口封装.js"></script>
+  <script src="/脚本/公共工具.js"></script>
+  <script src="/脚本/登录注册.js"></script>
+</body>
+</html>

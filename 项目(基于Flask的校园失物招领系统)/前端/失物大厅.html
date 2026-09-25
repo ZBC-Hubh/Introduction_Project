@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>失物大厅 - 校园失物招领系统</title>
+  <link rel="stylesheet" href="/样式/全局样式.css" />
+  <link rel="stylesheet" href="/样式/页面布局.css" />
+  <link rel="stylesheet" href="/样式/失物大厅.css" />
+</head>
+<body>
+  <div id="topbar-slot"></div>
+
+  <main class="page">
+    <section class="section-head">
+      <div>
+        <div class="section-title">失物大厅</div>
+        <div class="section-sub">浏览全部物品信息，支持分类筛选与关键词检索</div>
+      </div>
+    </section>
+
+    <div class="hall-layout">
+      <aside>
+        <div class="filter-card">
+          <div class="filter-title">筛选条件</div>
+
+          <div class="search-bar">
+            <input id="search-input" placeholder="搜索标题/描述/地点..." />
+            <button id="search-btn">搜索</button>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-label">信息类型</div>
+            <div class="filter-chips" id="filter-type"></div>
+          </div>
+          <div class="filter-group">
+            <div class="filter-label">物品分类</div>
+            <div class="filter-chips" id="filter-cat"></div>
+          </div>
+        </div>
+      </aside>
+
+      <div>
+        <div class="hall-toolbar">
+          <div class="hall-result">共找到 <b id="result-count">0</b> 条信息</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button class="btn btn-ghost" id="toggle-select" style="font-size:12px;padding:6px 12px;display:none">批量选择</button>
+            <button class="btn btn-ghost" id="select-all" style="font-size:12px;padding:6px 12px;display:none">全选</button>
+            <button class="btn" id="batch-delete" style="font-size:12px;padding:6px 12px;background:var(--danger);color:#fff;display:none">🗑 一键删除</button>
+            <a href="/发布.html" class="btn btn-primary">+ 发布信息</a>
+          </div>
+        </div>
+
+        <div class="item-grid" id="hall-grid"></div>
+        <div class="pagination" id="pagination"></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="/脚本/接口封装.js"></script>
+  <script src="/脚本/公共工具.js"></script>
+  <script src="/脚本/失物大厅.js"></script>
+</body>
+</html>

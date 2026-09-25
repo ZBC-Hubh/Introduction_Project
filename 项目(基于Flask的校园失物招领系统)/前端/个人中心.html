@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>个人中心 - 校园失物招领系统</title>
+  <link rel="stylesheet" href="/样式/全局样式.css" />
+  <link rel="stylesheet" href="/样式/页面布局.css" />
+  <link rel="stylesheet" href="/样式/详情与发布.css" />
+</head>
+<body>
+  <div id="topbar-slot"></div>
+  <main class="page">
+    <div class="profile-header">
+      <div class="profile-avatar" id="avatar">U</div>
+      <div>
+        <h2 style="font-family:var(--font-display); font-size:24px; margin-bottom:6px">
+          <span id="p-name">加载中</span>
+          <span class="profile-role-tag" id="p-role">学生</span>
+        </h2>
+        <p style="opacity:0.9;font-size:14px">
+          学工号：<b id="p-id">--</b> ｜ 手机：<b id="p-phone">--</b><br>
+          加入时间：<b id="p-created">--</b>
+        </p>
+      </div>
+    </div>
+
+    <div class="profile-stat">
+      <div class="profile-stat-card" data-k="total"><div class="n">0</div><div class="l">我发布的</div></div>
+      <div class="profile-stat-card" data-k="recovered"><div class="n">0</div><div class="l">已找回</div></div>
+      <div class="profile-stat-card" data-k="pending"><div class="n">0</div><div class="l">审核中</div></div>
+      <div class="profile-stat-card" data-k="reviewed"><div class="n">0</div><div class="l">已通过</div></div>
+    </div>
+
+    <div class="section-head">
+      <div><div class="section-title">我的发布</div><div class="section-sub">点击卡片查看详情</div></div>
+      <div class="section-more" style="display:flex;gap:8px;align-items:center">
+        <button class="btn btn-ghost" id="toggle-select" style="font-size:12px;padding:6px 12px">批量选择</button>
+        <button class="btn btn-ghost" id="select-all" style="font-size:12px;padding:6px 12px;display:none">全选</button>
+        <button class="btn" id="batch-delete" style="font-size:12px;padding:6px 12px;background:var(--danger);color:#fff;display:none">🗑 一键删除</button>
+        <a href="/发布.html">+ 去发布</a>
+      </div>
+    </div>
+    <div class="item-grid" id="mine-grid"></div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script src="/脚本/接口封装.js"></script>
+  <script src="/脚本/公共工具.js"></script>
+  <script src="/脚本/个人中心.js"></script>
+</body>
+</html>

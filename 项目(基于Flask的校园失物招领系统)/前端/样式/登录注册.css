@@ -1,0 +1,285 @@
+/* ============================================================
+   登录注册页 - 专属样式
+   左右分屏：左侧氛围插画区，右侧表单区
+   ============================================================ */
+
+.auth-shell {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 左侧氛围区 */
+.auth-aside {
+  position: relative;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(232, 168, 124, 0.35), transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(45, 95, 78, 0.55), transparent 50%),
+    linear-gradient(135deg, #2D5F4E 0%, #1F4438 60%, #143025 100%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px 22px;
+  color: var(--cream);
+}
+
+.auth-aside::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 6px 6px, 11px 11px;
+  background-position: 0 0, 3px 3px;
+  pointer-events: none;
+}
+
+.brand {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--amber), var(--amber-deep));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--forest-deep);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 1;
+}
+.hero-title {
+  font-size: 24px;
+  line-height: 1.15;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+}
+.hero-title em {
+  font-style: normal;
+  color: var(--amber);
+  font-weight: 700;
+}
+.hero-sub {
+  font-size: 11px;
+  line-height: 1.6;
+  color: rgba(250, 247, 242, 0.8);
+  max-width: 260px;
+}
+
+.hero-stats {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 16px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(250, 247, 242, 0.15);
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--amber);
+}
+.stat-label {
+  font-size: 10px;
+  color: rgba(250, 247, 242, 0.7);
+  margin-top: 2px;
+}
+
+/* 右侧表单区 */
+.auth-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  background: var(--cream);
+  position: relative;
+  overflow-y: auto;
+}
+.auth-card {
+  width: 100%;
+  max-width: 320px;
+}
+
+.card-tabs {
+  display: flex;
+  background: var(--paper);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  margin-bottom: 12px;
+  position: relative;
+}
+.tab-btn {
+  flex: 1;
+  padding: 5px 0;
+  font-size: 12px;
+  color: var(--muted);
+  background: transparent;
+  border-radius: var(--radius-sm);
+  position: relative;
+  z-index: 1;
+  transition: color .2s;
+}
+.tab-btn.active { color: var(--cream); }
+.tab-slider {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  height: calc(100% - 8px);
+  background: var(--forest);
+  border-radius: var(--radius-sm);
+  transition: transform .3s cubic-bezier(.4, .0, .2, 1);
+}
+.card-tabs[data-active="register"] .tab-slider { transform: translateX(100%); }
+
+.card-title {
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: var(--charcoal);
+}
+.card-desc {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+/* 身份切换（老师/学生） */
+.role-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+.role-card {
+  position: relative;
+  padding: 6px 8px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  cursor: pointer;
+  transition: all .2s;
+}
+.role-card:hover { border-color: var(--amber); }
+.role-card.active {
+  border-color: var(--forest);
+  background: rgba(45, 95, 78, 0.06);
+}
+.role-card.active::after {
+  content: "✓";
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+}
+.role-name {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 1px;
+}
+.role-desc { font-size: 10px; color: var(--muted); }
+
+/* 注册额外字段动态切换 */
+.extra-field { display: none; }
+.extra-field.show { display: block; }
+
+/* 表单字段紧凑化 */
+.field {
+  margin-bottom: 8px;
+}
+.field-label {
+  font-size: 10px;
+  margin-bottom: 2px;
+}
+.field-input {
+  padding: 7px 9px;
+  font-size: 12px;
+}
+
+.form-actions {
+  margin-top: 4px;
+}
+.form-actions .btn { width: 100%; padding: 8px; font-size: 13px; }
+
+.bottom-link {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+}
+.bottom-link a { font-weight: 500; }
+
+.error-text {
+  color: var(--danger);
+  font-size: 11px;
+  margin-top: -4px;
+  margin-bottom: 8px;
+  min-height: 12px;
+}
+
+/* 响应式：小屏幕改为上下布局 */
+@media (max-width: 880px) {
+  .auth-shell { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
+  .auth-aside { padding: 16px 18px; min-height: auto; }
+  .hero-title { font-size: 22px; }
+  .hero-sub { font-size: 10px; }
+  .hero-stats { display: none; }
+  .auth-main { padding: 10px 14px; }
+}
+
+/* 更小屏幕 - 手机端 */
+@media (max-width: 480px) {
+  .auth-shell { grid-template-columns: 1fr; }
+  .auth-aside { padding: 14px 16px; }
+  .brand-mark { width: 24px; height: 24px; font-size: 12px; border-radius: 6px; }
+  .brand-name { font-size: 12px; }
+  .hero-title { font-size: 18px; margin-bottom: 6px; }
+  .hero-sub { font-size: 10px; max-width: 100%; }
+  .auth-main { padding: 8px 12px; }
+  .auth-card { max-width: 100%; }
+  .card-tabs { padding: 2px; margin-bottom: 10px; }
+  .tab-btn { padding: 4px 0; font-size: 11px; }
+  .card-title { font-size: 16px; }
+  .card-desc { font-size: 10px; margin-bottom: 10px; }
+  .role-switch { gap: 4px; margin-bottom: 10px; }
+  .role-card { padding: 5px 6px; }
+  .role-name { font-size: 11px; }
+  .role-desc { font-size: 9px; }
+  .field { margin-bottom: 7px; }
+  .field-label { font-size: 9px; margin-bottom: 1px; }
+  .field-input { padding: 6px 8px; font-size: 11px; }
+  .form-actions .btn { padding: 7px; font-size: 12px; }
+  .bottom-link { font-size: 10px; margin-top: 8px; }
+  .error-text { font-size: 10px; }
+}

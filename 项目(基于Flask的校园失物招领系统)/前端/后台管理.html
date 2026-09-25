@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>后台管理 - 校园失物招领系统</title>
+  <link rel="stylesheet" href="/样式/全局样式.css" />
+  <link rel="stylesheet" href="/样式/页面布局.css" />
+  <link rel="stylesheet" href="/样式/后台管理.css" />
+</head>
+<body>
+  <div id="topbar-slot"></div>
+
+  <main class="page">
+    <section class="section-head">
+      <div>
+        <div class="section-title">后台管理中心</div>
+        <div class="section-sub">仅老师账号可用 · 审核信息 / 查看统计 / 管理用户 / 发布公告</div>
+      </div>
+    </section>
+
+    <nav class="admin-tabs">
+      <div class="admin-tab active" data-k="dashboard">📊 统计看板</div>
+      <div class="admin-tab" data-k="audit">🔍 审核管理</div>
+      <div class="admin-tab" data-k="users">👥 用户列表</div>
+      <div class="admin-tab" data-k="announcement">📣 公告管理</div>
+    </nav>
+
+    <!-- 统计看板 -->
+    <section class="admin-panel active" data-k="dashboard">
+      <div class="stat-grid">
+        <div class="stat-card" id="stat-total-card">
+          <div class="l">物品总数</div>
+          <div class="n" id="stat-total">0</div>
+          <div class="bar"><div class="fill" style="width:0%"></div></div>
+        </div>
+        <div class="stat-card" id="stat-recovered-card">
+          <div class="l">已找回物品</div>
+          <div class="n" id="stat-recovered">0</div>
+          <div class="bar"><div class="fill" style="width:0%"></div></div>
+        </div>
+        <div class="stat-card" id="stat-pending-card">
+          <div class="l">待审核</div>
+          <div class="n" id="stat-pending">0</div>
+          <div class="bar"><div class="fill" style="width:0%"></div></div>
+        </div>
+        <div class="stat-card" id="stat-users-card">
+          <div class="l">注册用户</div>
+          <div class="n" id="stat-users">0</div>
+          <div class="bar"><div class="fill" style="width:0%"></div></div>
+        </div>
+      </div>
+
+      <div class="chart-row">
+        <div class="chart-card">
+          <div class="chart-title">📦 各分类物品数量</div>
+          <div class="bar-chart">
+            <div class="bar-item"><div class="bar"><span class="val">0</span></div><div class="bar-label"></div></div>
+            <div class="bar-item"><div class="bar"><span class="val">0</span></div><div class="bar-label"></div></div>
+            <div class="bar-item"><div class="bar"><span class="val">0</span></div><div class="bar-label"></div></div>
+            <div class="bar-item"><div class="bar"><span class="val">0</span></div><div class="bar-label"></div></div>
+            <div class="bar-item"><div class="bar"><span class="val">0</span></div><div class="bar-label"></div></div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">🔍 丢失 / 捡到 类型</div>
+          <div class="donut-wrap">
+            <div class="donut">
+              <div class="center">
+                <div class="num">0</div>
+                <div class="cap">总计</div>
+              </div>
+            </div>
+            <div class="legend">
+              <div class="legend-item" id="legend-lost">
+                <span class="legend-dot" style="background:var(--forest)"></span>
+                <span>丢失数量：<b class="n">0</b></span>
+              </div>
+              <div class="legend-item" id="legend-found">
+                <span class="legend-dot" style="background:var(--amber)"></span>
+                <span>捡到数量：<b class="n">0</b></span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background:#4F8A6A"></span>
+                <span>学生用户：<b id="stat-stu">0</b></span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background:#E8A87C"></span>
+                <span>老师用户：<b id="stat-tea">0</b></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 审核管理 -->
+    <section class="admin-panel" data-k="audit">
+      <div class="table-head">
+        <div class="table-title">待审核列表</div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <span id="selected-count" style="font-size:13px;color:var(--muted)">未选择</span>
+          <button class="btn btn-pass" id="batch-pass" disabled style="opacity:0.5;cursor:not-allowed">✅ 一键通过</button>
+          <button class="btn btn-reject" id="batch-reject" disabled style="opacity:0.5;cursor:not-allowed">❌ 一键拒绝</button>
+          <button class="btn btn-primary" onclick="location.reload()">🔄 刷新</button>
+        </div>
+      </div>
+      <div class="data-table">
+        <table>
+          <thead><tr>
+            <th style="width:36px;text-align:center"><input type="checkbox" id="select-all"></th>
+            <th>标题</th><th>类型/分类</th><th>发布者</th><th>时间</th><th>描述</th><th>操作</th>
+          </tr></thead>
+          <tbody id="pending-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 用户列表 -->
+    <section class="admin-panel" data-k="users">
+      <div class="table-head"><div class="table-title">注册用户列表</div></div>
+      <div class="user-grid" id="user-grid"></div>
+    </section>
+
+    <!-- 公告管理 -->
+    <section class="admin-panel" data-k="announcement">
+      <form id="ann-form" class="ann-card" autocomplete="off">
+        <div class="chart-title" style="margin-bottom:16px">📣 发布新公告</div>
+        <div class="field">
+          <label class="field-label">公告标题</label>
+          <input class="field-input" id="ann-title" placeholder="如：关于期末周失物集中保管的通知" maxlength="80" required />
+        </div>
+        <div class="field">
+          <label class="field-label">公告内容</label>
+          <textarea class="field-input" id="ann-content" rows="4" maxlength="600" placeholder="公告正文..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">立即发布</button>
+      </form>
+      <div class="ann-card">
+        <div class="chart-title" style="margin-bottom:0">历史公告</div>
+        <div class="ann-list" id="ann-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script src="/脚本/接口封装.js"></script>
+  <script src="/脚本/公共工具.js"></script>
+  <script src="/脚本/后台管理.js"></script>
+</body>
+</html>
