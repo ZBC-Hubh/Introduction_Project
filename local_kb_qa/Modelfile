@@ -1,1 +1,0 @@
-FROM ./models/bge-m3-Q4_K_M.gguf
